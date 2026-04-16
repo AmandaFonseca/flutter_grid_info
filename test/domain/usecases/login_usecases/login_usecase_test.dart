@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import '../../../login_mocks_data.dart';
-import '../login_usecases/login_usecase.mocks.dart';
+import 'login_usecase_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<LoginRepository>()])
 void main() {
