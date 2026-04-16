@@ -7,7 +7,7 @@ class LoginMocksData {
     senhaLogin: 'senha@1234',
   );
   static final tUsuarioInvalidoEmail = Usuario(
-    emailUsuario: 'dev.targetsistemas.com',
+    emailUsuario: 'devtargetsistemas.com',
     senhaLogin: 'senha@1234',
   );
   static final tUsuarioInvalidoSenha = Usuario(
