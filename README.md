@@ -16,7 +16,7 @@ Aplicativo Flutter para registro de informações e gráfico com dados das ediç
    LOGIN_EMAIL=SEU_EMAIL_TESTE_AQUI
    LOGIN_PASSWORD=SEU_SENHA_TESTE_AQUI
    ```
-   ⚠️ **Nota de Segurança:** Para fins de segurança e boas práticas, o arquivo .env foi ignorado. O projeto utiliza variáveis de ambiente para as credenciais de login. Caso o arquivo não seja criado, o sistema utiliza por padrão admin@teste.com e 123456.
+   ⚠️ **Nota de Segurança:** Para fins de segurança e boas práticas, o arquivo .env foi ignorado. O projeto utiliza variáveis de ambiente para as credenciais de login. Caso o arquivo não seja criado, o sistema utiliza por padrão email admin@targetsistemas.com e a senha senha@1234.
 
 3.  **Instale as dependências:**
     ```bash
