@@ -10,11 +10,14 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
   @override
   Future<UsuarioModel> login(String email, String senha) async {
     await Future.delayed(const Duration(seconds: 2));
+    final emailNormalizado = email.trim().toLowerCase();
 
-    final envEmail = dotenv.env['LOGIN_EMAIL'] ?? 'admin@targetsistemas.com';
-    final envPass = dotenv.env['LOGIN_PASSWORD'] ?? 'senha@1234';
+    final envEmail = (dotenv.env['LOGIN_EMAIL'] ?? 'admin@targetsistemas.com')
+        .trim()
+        .toLowerCase();
+    final envPass = (dotenv.env['LOGIN_PASSWORD'] ?? 'senha@1234').trim();
 
-    if (email == envEmail && senha == envPass) {
+    if (emailNormalizado == envEmail && senha == envPass) {
       return UsuarioModel(emailUsuario: email, senhaLogin: senha);
     } else {
       throw Exception("Credenciais Inválidas");
