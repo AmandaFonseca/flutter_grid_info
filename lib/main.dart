@@ -21,13 +21,12 @@ class GridInfo extends StatelessWidget {
     return MaterialApp(
       title: 'Grid Info',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      initialRoute: estaLogado ? '/home' : '/',
+      home: estaLogado ? Home() : const LoginScreen(),
 
       routes: {
-        '/': (context) => const LoginScreen(),
+        '/login': (context) => const LoginScreen(),
         '/home': (context) => Home(),
       },
-      //home: const LoginScreen(),
     );
   }
 }
