@@ -19,7 +19,7 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
 
     if (emailNormalizado == envEmail && senha == envPass) {
       await sharedPreferences.setBool('is_logged', true);
-      print('está salvo no shared');
+      //print('está salvo no shared');
       return UsuarioModel(emailUsuario: email, senhaLogin: senha);
     } else {
       throw Exception("Credenciais Inválidas");
