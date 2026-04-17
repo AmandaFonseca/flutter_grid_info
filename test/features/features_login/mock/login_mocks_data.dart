@@ -1,7 +1,7 @@
 import 'package:flutter_grid_info/features/features_login/data/models/usuario_model.dart';
 import 'package:flutter_grid_info/features/features_login/domain/entities/usuario.dart';
 
-class LoginMocksData {
+class MocksData {
   static final tUsuarioValido = Usuario(
     emailUsuario: 'dev@targetsistemas.com',
     senhaLogin: 'senha@1234',

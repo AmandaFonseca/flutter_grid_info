@@ -6,7 +6,7 @@ import 'package:flutter_grid_info/features/features_login/domain/usecases/login_
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import '../../../login_mocks_data.dart';
+import '../../mock/login_mocks_data.dart';
 import 'login_usecase_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<LoginRepository>()])
@@ -20,7 +20,7 @@ void main() {
   });
 
   test('Deve retornar entidade Usuario do lado direito do Either', () async {
-    final tUsuario = LoginMocksData.tUsuarioValido;
+    final tUsuario = MocksData.tUsuarioValido;
 
     when(
       repository.realizarLogin(any),
@@ -34,7 +34,7 @@ void main() {
   test(
     'Deve retornar uma falha (Failure) do lado esquerdo do Either quando o login falhar',
     () async {
-      final tUsuarioInvalidoEmail = LoginMocksData.tUsuarioInvalidoEmail;
+      final tUsuarioInvalidoEmail = MocksData.tUsuarioInvalidoEmail;
 
       when(
         repository.realizarLogin(any),
