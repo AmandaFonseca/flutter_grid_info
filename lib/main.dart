@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grid_info/features/features_login/presentation/pages/login_screen.dart';
+import './core/injections/container_injection.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setUpContainer();
+  runApp(const GridInfo());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class GridInfo extends StatelessWidget {
+  const GridInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Grid Info',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: null,
+      home: const LoginScreen(),
     );
   }
 }
