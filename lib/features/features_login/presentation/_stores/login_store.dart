@@ -24,6 +24,12 @@ abstract class _LoginStoreBase with Store {
   @observable
   String? mensagemErro;
 
+  @observable
+  bool senhaVisivel = false;
+
+  @action
+  void alternarVisibilidadeSenha() => senhaVisivel = !senhaVisivel;
+
   @computed
   bool get podeLogar {
     final usuarioProxy = Usuario(emailUsuario: email, senhaLogin: senha);
