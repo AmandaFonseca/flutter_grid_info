@@ -9,6 +9,8 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
 
   @override
   Future<UsuarioModel> login(String email, String senha) async {
+    await Future.delayed(const Duration(seconds: 2));
+
     final envEmail = dotenv.env['LOGIN_EMAIL'] ?? 'admin@targetsistemas.com';
     final envPass = dotenv.env['LOGIN_PASSWORD'] ?? 'senha@1234';
 
