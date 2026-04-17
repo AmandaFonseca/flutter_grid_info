@@ -18,7 +18,7 @@ Aplicativo Flutter para registro de informações e visualização de gráficos 
     ⚠️ **Nota de Segurança:**: O projeto utiliza variáveis de ambiente. Caso o arquivo não seja criado, o sistema utiliza as credenciais padrão:
 
     - E-mail: admin@targetsistemas.com
-    - Senha: 123456
+    - Senha: senha@1234
 
 
 3.  **Instale as dependências**
