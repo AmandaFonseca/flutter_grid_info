@@ -80,17 +80,29 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Observer(
               builder: (_) {
-                return ElevatedButton(
-                  onPressed: store.podeLogar && !store.carregando
-                      ? () => store.realizarLogin()
-                      : null,
-                  child: store.carregando
-                      ? SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : Text("Entrar"),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ElevatedButton(
+                      onPressed: store.podeLogar && !store.carregando
+                          ? () => store.realizarLogin(
+                              onSuccess: () {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/home',
+                                );
+                              },
+                            )
+                          : null,
+                      child: store.carregando
+                          ? SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : Text("Entrar"),
+                    ),
+                  ],
                 );
               },
             ),

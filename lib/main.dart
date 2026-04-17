@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grid_info/features/feature_home/presentation/pages/home_screen.dart';
 import 'package:flutter_grid_info/features/features_login/presentation/pages/login_screen.dart';
 import './core/injections/container_injection.dart';
 
@@ -16,7 +17,12 @@ class GridInfo extends StatelessWidget {
     return MaterialApp(
       title: 'Grid Info',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const LoginScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginScreen(),
+        '/home': (context) => const Home(),
+      },
+      //home: const LoginScreen(),
     );
   }
 }

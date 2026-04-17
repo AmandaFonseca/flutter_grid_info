@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_grid_info/features/features_login/domain/entities/usuario.dart';
 import 'package:flutter_grid_info/features/features_login/domain/usecases/login_usecases/login_usecase.dart';
@@ -60,7 +61,7 @@ abstract class _LoginStoreBase with Store {
   void setSenha(String valor) => senha = valor;
 
   @action
-  Future<void> realizarLogin() async {
+  Future<void> realizarLogin({required VoidCallback onSuccess}) async {
     carregando = true;
     mensagemErro = null;
 
@@ -74,6 +75,7 @@ abstract class _LoginStoreBase with Store {
       },
       (usuarioSucesso) {
         carregando = false;
+        onSuccess();
         print(
           "Login realizado com sucesso para: ${usuarioSucesso.emailUsuario}",
         );
