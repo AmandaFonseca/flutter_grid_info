@@ -18,6 +18,8 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
     final envPass = (dotenv.env['LOGIN_PASSWORD'] ?? 'senha@1234').trim();
 
     if (emailNormalizado == envEmail && senha == envPass) {
+      await sharedPreferences.setBool('is_logged', true);
+      print('está salvo no shared');
       return UsuarioModel(emailUsuario: email, senhaLogin: senha);
     } else {
       throw Exception("Credenciais Inválidas");
