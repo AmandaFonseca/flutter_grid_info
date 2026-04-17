@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_grid_info/features/features_login/presentation/_stores/login_store.dart';
+import 'package:flutter_grid_info/features/features_login/presentation/widgets/login_screen_text_field.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/injections/container_injection.dart';
 
@@ -32,9 +33,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                TextField(
+                CustomTextField(
+                  label: "E-mail",
                   onChanged: store.setEmail,
-                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  errorText: () => store.erroEmail,
+                  keyboardType: TextInputType.emailAddress,
                 ),
               ],
             ),
@@ -51,10 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                TextField(
-                  obscureText: true,
+                CustomTextField(
+                  label: "Senha",
                   onChanged: store.setSenha,
-                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  errorText: () => store.erroSenha,
+                  obscureText: true,
                 ),
                 const SizedBox(height: 24),
               ],

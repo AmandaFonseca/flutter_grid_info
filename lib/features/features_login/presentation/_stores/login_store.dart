@@ -29,6 +29,30 @@ abstract class _LoginStoreBase with Store {
     return usuarioProxy.isEmailValido && usuarioProxy.isSenhaValida;
   }
 
+  @computed
+  String? get erroEmail {
+    if (email.isEmpty) return null;
+
+    final usuarioProxy = Usuario(emailUsuario: email, senhaLogin: senha);
+    if (!usuarioProxy.isEmailValido) {
+      return "Formato de e-mail inválido";
+    }
+
+    return null;
+  }
+
+  @computed
+  String? get erroSenha {
+    if (senha.isEmpty) return null;
+
+    final usuarioProxy = Usuario(emailUsuario: email, senhaLogin: senha);
+    if (!usuarioProxy.isSenhaValida) {
+      return "A senha deve ter pelo menos 6 caracteres";
+    }
+
+    return null;
+  }
+
   @action
   void setEmail(String valor) => email = valor;
 
