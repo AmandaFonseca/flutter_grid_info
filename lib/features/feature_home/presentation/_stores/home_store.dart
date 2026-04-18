@@ -18,9 +18,6 @@ abstract class _HomeStoreBase with Store {
   String idInfo = "";
 
   @observable
-  bool isLoading = false;
-
-  @observable
   ObservableList<Informacao> listaInformacoes = ObservableList<Informacao>();
 
   @observable
@@ -109,13 +106,12 @@ abstract class _HomeStoreBase with Store {
       qtdEdicoesInfo: 0,
     );
     final resultado = await _homeUsecase.adiciona(novaInfo);
-    print(resultado);
     resultado.fold(
       (failure) {
         mensagemErro = "Erro ao salvar: ${failure.toString()}";
       },
       (sucesso) {
-        isLoading = true;
+        carregando = true;
         listaInformacoes.add(sucesso);
         textoInput = "";
         Navigator.pop(context);

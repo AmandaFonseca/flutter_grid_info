@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_grid_info/core/injections/container_injection.dart';
 import 'package:flutter_grid_info/features/feature_home/presentation/_stores/home_store.dart';
 import 'package:flutter_grid_info/features/feature_home/presentation/widgets/home_box_card.dart';
+import 'package:flutter_grid_info/features/feature_home/presentation/widgets/home_modal/home_add_info_dialog.dart';
+import 'package:flutter_grid_info/features/feature_home/presentation/widgets/home_modal/home_edit_info_dialog.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,191 +40,6 @@ class _HomeState extends State<Home> {
     }
   }
 
-  void _showAddInfoDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          title: const Text(
-            'Nova Informação',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          content: SizedBox(
-            width: double.maxFinite,
-            child: TextField(
-              controller: controller,
-              maxLines: 6,
-              decoration: const InputDecoration(
-                hintText: "Digite seu texto aqui...",
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.all(16),
-              ),
-            ),
-          ),
-          actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialogContext),
-              child: const Text("Cancelar"),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await store.adicionarItem(context, controller);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff3E3030),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 12,
-                ),
-              ),
-              child: const Text("Salvar"),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> _showEditInfoDialog(String textoAtual, String id) async {
-    final TextEditingController controller = TextEditingController(
-      text: textoAtual,
-    );
-
-    await showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Observer(
-              builder: (_) => Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "Editar Dados",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.delete_outline,
-                          color: Colors.red,
-                        ),
-                        onPressed: store.carregando
-                            ? null
-                            : () async {
-                                final confirmou = await _confirmarExclusao();
-                                if (confirmou) {
-                                  final excluiu = await store.excluirItem(id);
-                                  if (excluiu && context.mounted) {
-                                    Navigator.pop(context);
-                                  }
-                                }
-                              },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  TextField(
-                    controller: controller,
-                    maxLines: 6,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      contentPadding: const EdgeInsets.all(16),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: store.carregando
-                              ? null
-                              : () => Navigator.pop(context),
-                          child: const Text("Sair"),
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff3E3030),
-                          ),
-                          onPressed: store.carregando
-                              ? null
-                              : () async {
-                                  final salvou = await store.editarItem(
-                                    id,
-                                    controller.text,
-                                  );
-                                  if (salvou && context.mounted) {
-                                    Navigator.pop(context);
-                                  }
-                                },
-                          child: store.carregando
-                              ? const SizedBox(
-                                  width: 18,
-                                  height: 18,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    color: Colors.white,
-                                  ),
-                                )
-                              : const Text(
-                                  "Salvar",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Future<bool> _confirmarExclusao() async {
-    return await showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text("Excluir?"),
-            content: const Text(
-              "Tem certeza que deseja apagar esta informação?",
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context, false),
-                child: const Text("Não"),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, true),
-                child: const Text("Sim", style: TextStyle(color: Colors.red)),
-              ),
-            ],
-          ),
-        ) ??
-        false;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -250,35 +67,38 @@ class _HomeState extends State<Home> {
               );
             }
 
-            return Container(
-              child: ListView.builder(
-                controller: _listScrollController,
-                padding: const EdgeInsets.all(12),
-                itemCount: store.listaInformacoes.length,
-                itemBuilder: (_, index) {
-                  final item = store.listaInformacoes[index];
-                  return BoxCard(
-                    textCardString: item.textoInfo,
-                    IconeCardEdit: IconButton(
-                      icon: const Icon(Icons.edit),
-                      onPressed: () {
-                        _showEditInfoDialog(item.textoInfo, item.idInfo);
-                      },
-                    ),
-                    IconeCardGrafic: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.bar_chart),
-                    ),
-                  );
-                },
-              ),
+            return ListView.builder(
+              controller: _listScrollController,
+              padding: const EdgeInsets.all(12),
+              itemCount: store.listaInformacoes.length,
+              itemBuilder: (_, index) {
+                final item = store.listaInformacoes[index];
+                return BoxCard(
+                  textCardString: item.textoInfo,
+                  iconeCardEdit: IconButton(
+                    icon: const Icon(Icons.edit),
+                    onPressed: () {
+                      showEditInfoDialog(
+                        context,
+                        store,
+                        item.idInfo,
+                        item.textoInfo,
+                      );
+                    },
+                  ),
+                  iconeCardGrafic: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.bar_chart),
+                  ),
+                );
+              },
             );
           },
         ),
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddInfoDialog(context),
+        onPressed: () => showAddInfoDialog(context, store, controller),
         child: const Icon(Icons.add),
       ),
     );

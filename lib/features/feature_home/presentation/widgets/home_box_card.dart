@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class BoxCard extends StatelessWidget {
-  final IconButton IconeCardEdit;
-  final IconButton IconeCardGrafic;
+  final IconButton iconeCardEdit;
+  final IconButton iconeCardGrafic;
   final String textCardString;
   final void Function(String textoInfo, String idInfo)? onPressed;
   const BoxCard({
     super.key,
     required this.textCardString,
-    required this.IconeCardEdit,
+    required this.iconeCardEdit,
     this.onPressed,
-    required this.IconeCardGrafic,
+    required this.iconeCardGrafic,
   });
 
   @override
@@ -25,8 +25,8 @@ class BoxCard extends StatelessWidget {
             Expanded(
               child: Text(textCardString, style: const TextStyle(fontSize: 16)),
             ),
-            IconeCardEdit,
-            IconeCardGrafic,
+            iconeCardEdit,
+            iconeCardGrafic,
           ],
         ),
       ),
