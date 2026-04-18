@@ -6,7 +6,7 @@ import 'package:flutter_grid_info/features/features_login/domain/usecases/login_
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import '../../mock/login_mocks_data.dart';
+import '../../../mock/login_mocks_data.dart';
 import 'login_usecase_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<LoginRepository>()])

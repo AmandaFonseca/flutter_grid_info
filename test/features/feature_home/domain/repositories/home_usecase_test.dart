@@ -25,12 +25,12 @@ void main() {
       final tInformacao = HomeMocksData.tInformacao;
 
       when(
-        repository.adicionarInformacao(any),
+        repository.salvarInformacao(any),
       ).thenAnswer((_) async => Right<Failure, Informacao>(tInformacao));
 
       final result = await usecase.adiciona(tInformacao);
       expect(result, Right(tInformacao));
-      verify(repository.adicionarInformacao(tInformacao)).called(1);
+      verify(repository.salvarInformacao(tInformacao)).called(1);
     },
   );
 
@@ -41,7 +41,7 @@ void main() {
 
       final resultado = await usecase.adiciona(tInformacaoInvalida);
       expect(resultado, Left(FileFailure()));
-      verifyNever(repository.adicionarInformacao(any));
+      verifyNever(repository.salvarInformacao(any));
     },
   );
 }

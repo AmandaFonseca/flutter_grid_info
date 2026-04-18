@@ -38,23 +38,23 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
 /// See the documentation for Mockito's code generation for more information.
 class MockHomeRepository extends _i1.Mock implements _i3.HomeRepository {
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>> adicionarInformacao(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>> salvarInformacao(
     _i6.Informacao? info,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#adicionarInformacao, [info]),
+            Invocation.method(#salvarInformacao, [info]),
             returnValue:
                 _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>>.value(
                   _FakeEither_0<_i5.Failure, _i6.Informacao>(
                     this,
-                    Invocation.method(#adicionarInformacao, [info]),
+                    Invocation.method(#salvarInformacao, [info]),
                   ),
                 ),
             returnValueForMissingStub:
                 _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>>.value(
                   _FakeEither_0<_i5.Failure, _i6.Informacao>(
                     this,
-                    Invocation.method(#adicionarInformacao, [info]),
+                    Invocation.method(#salvarInformacao, [info]),
                   ),
                 ),
           )
