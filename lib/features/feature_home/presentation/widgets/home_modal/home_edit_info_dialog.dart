@@ -27,7 +27,7 @@ Future<void> showEditInfoDialog(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Editar Dados",
+                      "Editar o Texto",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

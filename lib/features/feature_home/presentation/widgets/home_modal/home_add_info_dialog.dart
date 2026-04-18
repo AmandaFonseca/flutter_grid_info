@@ -12,7 +12,7 @@ Future<void> showAddInfoDialog(
       return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text(
-          'Nova Informação',
+          'Insirir um Texto',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         content: SizedBox(
@@ -34,14 +34,23 @@ Future<void> showAddInfoDialog(
             child: const Text("Cancelar"),
           ),
           ElevatedButton(
-            onPressed: () async {
-              await store.adicionarItem(context, controller);
-            },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xff3E3030),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
-            child: const Text("Salvar"),
+            onPressed: store.carregando
+                ? null
+                : () async {
+                    final sucesso = await store.adicionarItem(controller.text);
+
+                    if (sucesso && context.mounted) {
+                      controller.clear();
+                      Navigator.pop(context);
+                    }
+                  },
+            child: store.carregando
+                ? const CircularProgressIndicator()
+                : const Text("Salvar"),
           ),
         ],
       );

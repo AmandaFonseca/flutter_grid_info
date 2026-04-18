@@ -1,5 +1,3 @@
-import 'dart:math';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_grid_info/features/feature_home/domain/entities/informacao.dart';
 import 'package:flutter_grid_info/features/feature_home/domain/usecases/home_usecase.dart';
@@ -12,24 +10,13 @@ abstract class _HomeStoreBase with Store {
   _HomeStoreBase(this._homeUsecase);
 
   @observable
-  String textoInput = "";
-
-  @observable
-  String idInfo = "";
-
-  @observable
   ObservableList<Informacao> listaInformacoes = ObservableList<Informacao>();
 
   @observable
   bool carregando = false;
   @observable
   String? mensagemErro;
-  @computed
-  bool get podeAdicionar => textoInput.length >= 3;
-  @action
-  void setTextoInput(String valor) => textoInput = valor;
 
-  @action
   @action
   Future<bool> excluirItem(String id) async {
     carregando = true;
@@ -92,31 +79,30 @@ abstract class _HomeStoreBase with Store {
   }
 
   @action
-  Future<void> adicionarItem(
-    BuildContext context,
-    TextEditingController controller,
-  ) async {
+  Future<bool> adicionarItem(String texto) async {
     carregando = true;
     mensagemErro = null;
-    int numeroAleatorio = Random().nextInt(9000) + 1000;
-    String stringNumeroAleatorio = numeroAleatorio.toString();
+
+    String idAleatorio = DateTime.now().millisecondsSinceEpoch.toString();
     final novaInfo = Informacao(
-      idInfo: stringNumeroAleatorio,
-      textoInfo: controller.text,
+      idInfo: idAleatorio,
+      textoInfo: texto,
       qtdEdicoesInfo: 0,
     );
+
     final resultado = await _homeUsecase.adiciona(novaInfo);
-    resultado.fold(
+
+    return resultado.fold(
       (failure) {
         mensagemErro = "Erro ao salvar: ${failure.toString()}";
+        carregando = false;
+        return false;
       },
       (sucesso) {
-        carregando = true;
         listaInformacoes.add(sucesso);
-        textoInput = "";
-        Navigator.pop(context);
+        carregando = false;
+        return true;
       },
     );
-    carregando = false;
   }
 }
