@@ -82,9 +82,9 @@ abstract class _LoginStoreBase with Store {
       (usuarioSucesso) {
         carregando = false;
         onSuccess();
-        print(
-          "Login realizado com sucesso para: ${usuarioSucesso.emailUsuario}",
-        );
+        //print(
+        //  "Login realizado com sucesso para: ${usuarioSucesso.emailUsuario}",
+        //);
       },
     );
   }
