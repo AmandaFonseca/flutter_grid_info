@@ -86,6 +86,142 @@ class _HomeState extends State<Home> {
     );
   }
 
+  Future<void> _showEditInfoDialog(String textoAtual, String id) async {
+    final TextEditingController controller = TextEditingController(
+      text: textoAtual,
+    );
+
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Observer(
+              builder: (_) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Editar Dados",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.red,
+                        ),
+                        onPressed: store.carregando
+                            ? null
+                            : () async {
+                                final confirmou = await _confirmarExclusao();
+                                if (confirmou) {
+                                  final excluiu = await store.excluirItem(id);
+                                  if (excluiu && context.mounted) {
+                                    Navigator.pop(context);
+                                  }
+                                }
+                              },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: controller,
+                    maxLines: 6,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.all(16),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: store.carregando
+                              ? null
+                              : () => Navigator.pop(context),
+                          child: const Text("Sair"),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xff3E3030),
+                          ),
+                          onPressed: store.carregando
+                              ? null
+                              : () async {
+                                  final salvou = await store.editarItem(
+                                    id,
+                                    controller.text,
+                                  );
+                                  if (salvou && context.mounted) {
+                                    Navigator.pop(context);
+                                  }
+                                },
+                          child: store.carregando
+                              ? const SizedBox(
+                                  width: 18,
+                                  height: 18,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : const Text(
+                                  "Salvar",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<bool> _confirmarExclusao() async {
+    return await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text("Excluir?"),
+            content: const Text(
+              "Tem certeza que deseja apagar esta informação?",
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text("Não"),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: const Text("Sim", style: TextStyle(color: Colors.red)),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,18 +249,47 @@ class _HomeState extends State<Home> {
               );
             }
 
-            return ListView.builder(
-              controller: _listScrollController,
-              padding: const EdgeInsets.all(12),
-              itemCount: store.listaInformacoes.length,
-              itemBuilder: (_, index) {
-                final item = store.listaInformacoes[index];
+            return Container(
+              child: ListView.builder(
+                controller: _listScrollController,
+                padding: const EdgeInsets.all(12),
+                itemCount: store.listaInformacoes.length,
+                itemBuilder: (_, index) {
+                  final item = store.listaInformacoes[index];
 
-                return Card(
-                  elevation: 4,
-                  child: Center(child: Text(item.textoInfo)),
-                );
-              },
+                  return Card(
+                    elevation: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              item.textoInfo,
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                          ),
+
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () {
+                              _showEditInfoDialog(item.textoInfo, item.idInfo);
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.bar_chart),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             );
           },
         ),
