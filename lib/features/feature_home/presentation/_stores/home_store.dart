@@ -14,8 +14,20 @@ abstract class _HomeStoreBase with Store {
 
   @observable
   bool carregando = false;
+
   @observable
   String? mensagemErro;
+
+  @computed
+  int get totalLinhas => listaInformacoes.length;
+
+  @computed
+  int get totalEdicoes =>
+      listaInformacoes.fold(0, (sum, item) => sum + item.qtdEdicoesInfo);
+
+  @computed
+  int get totalCaracteres =>
+      listaInformacoes.fold(0, (sum, item) => sum + item.textoInfo.length);
 
   @action
   Future<bool> excluirItem(String id) async {
@@ -36,12 +48,27 @@ abstract class _HomeStoreBase with Store {
     );
   }
 
+  @computed
+  Map<String, int> get estatisticasAlfanumericas {
+    int letras = 0;
+    int numeros = 0;
+
+    for (var item in listaInformacoes) {
+      final texto = item.textoInfo;
+      letras += RegExp(r'[a-zA-Z]').allMatches(texto).length;
+      numeros += RegExp(r'[0-9]').allMatches(texto).length;
+    }
+
+    return {'Letras': letras, 'Números': numeros};
+  }
+
   @action
   Future<void> inicializarDados() async {
     final resultado = await _homeUsecase.recuperarInformacoes();
     resultado.fold(
       (failure) {
-        print("Erro ao carregar dados: $failure");
+        mensagemErro =
+            "Não foi possível carregar seus dados. Verifique o armazenamento.";
       },
       (lista) {
         listaInformacoes.clear();
@@ -51,13 +78,17 @@ abstract class _HomeStoreBase with Store {
   }
 
   @action
-  Future<bool> editarItem(String id, String novoTexto) async {
+  Future<bool> editarItem(
+    String id,
+    String novoTexto,
+    int qtdEdicoesInfo,
+  ) async {
     carregando = true;
 
     final infoEditada = Informacao(
       idInfo: id,
       textoInfo: novoTexto,
-      qtdEdicoesInfo: 0,
+      qtdEdicoesInfo: qtdEdicoesInfo + 1,
     );
 
     final result = await _homeUsecase.editarItem(infoEditada);

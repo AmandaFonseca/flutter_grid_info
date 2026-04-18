@@ -8,12 +8,13 @@ Future<void> showEditInfoDialog(
   HomeStore store,
   String id,
   String textoAtual,
+  int qtdEdicoesInfo,
 ) async {
   final controller = TextEditingController(text: textoAtual);
 
   await showDialog(
     context: context,
-    barrierDismissible: false,
+    barrierDismissible: !store.carregando,
     builder: (_) {
       return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -90,6 +91,7 @@ Future<void> showEditInfoDialog(
                                 final salvou = await store.editarItem(
                                   id,
                                   controller.text,
+                                  qtdEdicoesInfo,
                                 );
 
                                 if (salvou && context.mounted) {

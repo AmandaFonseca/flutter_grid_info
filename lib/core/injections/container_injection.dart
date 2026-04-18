@@ -56,5 +56,5 @@ void home() {
     () => HomeUsecase(repository: getIt()),
   );
 
-  getIt.registerFactory(() => HomeStore(getIt()));
+  getIt.registerLazySingleton(() => HomeStore(getIt()));
 }

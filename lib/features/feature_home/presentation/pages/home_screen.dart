@@ -83,6 +83,7 @@ class _HomeState extends State<Home> {
                         store,
                         item.idInfo,
                         item.textoInfo,
+                        item.qtdEdicoesInfo,
                       );
                     },
                   ),
