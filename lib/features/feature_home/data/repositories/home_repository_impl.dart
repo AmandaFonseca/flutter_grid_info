@@ -26,4 +26,14 @@ class HomeRepositoryImpl implements HomeRepository {
       return Left(FileFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<Informacao>>> recuperarInformacoes() async {
+    try {
+      final resultado = await dataSource.recuperarInformacoes();
+      return Right(resultado);
+    } catch (e) {
+      return Left(FileFailure());
+    }
+  }
 }

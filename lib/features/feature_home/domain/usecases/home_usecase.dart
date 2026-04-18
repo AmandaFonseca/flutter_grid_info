@@ -14,4 +14,8 @@ class HomeUsecase {
     }
     return await repository.salvarInformacao(info);
   }
+
+  Future<Either<Failure, List<Informacao>>> recuperarInformacoes() async {
+    return await repository.recuperarInformacoes();
+  }
 }
