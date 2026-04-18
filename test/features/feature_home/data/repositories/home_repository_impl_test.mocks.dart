@@ -53,4 +53,22 @@ class MockHomeLocalDataSource extends _i1.Mock
                 ),
           )
           as _i3.Future<List<_i4.InformacaoModel>>);
+
+  @override
+  _i3.Future<void> removeItem(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#removeItem, [id]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> editarItem(_i4.InformacaoModel? info) =>
+      (super.noSuchMethod(
+            Invocation.method(#editarItem, [info]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 }

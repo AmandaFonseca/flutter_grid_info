@@ -18,4 +18,15 @@ class HomeUsecase {
   Future<Either<Failure, List<Informacao>>> recuperarInformacoes() async {
     return await repository.recuperarInformacoes();
   }
+
+  Future<Either<Failure, Informacao>> excluirInformacao(String id) async {
+    return await repository.excluirInformacao(id);
+  }
+
+  Future<Either<Failure, Informacao>> editarItem(Informacao info) async {
+    if (!info.isTextoInfoValido) {
+      return Left(FileFailure());
+    }
+    return await repository.editarItem(info);
+  }
 }

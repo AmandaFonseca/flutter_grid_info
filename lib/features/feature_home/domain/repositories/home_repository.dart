@@ -5,4 +5,6 @@ import 'package:flutter_grid_info/features/feature_home/domain/entities/informac
 abstract class HomeRepository {
   Future<Either<Failure, Informacao>> salvarInformacao(Informacao info);
   Future<Either<Failure, List<Informacao>>> recuperarInformacoes();
+  Future<Either<Failure, Informacao>> excluirInformacao(String id);
+  Future<Either<Failure, Informacao>> editarItem(Informacao info);
 }

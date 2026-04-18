@@ -81,4 +81,50 @@ class MockHomeRepository extends _i1.Mock implements _i3.HomeRepository {
                 ),
           )
           as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Informacao>>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>> excluirInformacao(
+    String? id,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#excluirInformacao, [id]),
+            returnValue:
+                _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.Informacao>(
+                    this,
+                    Invocation.method(#excluirInformacao, [id]),
+                  ),
+                ),
+            returnValueForMissingStub:
+                _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.Informacao>(
+                    this,
+                    Invocation.method(#excluirInformacao, [id]),
+                  ),
+                ),
+          )
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>> editarItem(
+    _i6.Informacao? info,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#editarItem, [info]),
+            returnValue:
+                _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.Informacao>(
+                    this,
+                    Invocation.method(#editarItem, [info]),
+                  ),
+                ),
+            returnValueForMissingStub:
+                _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.Informacao>(
+                    this,
+                    Invocation.method(#editarItem, [info]),
+                  ),
+                ),
+          )
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.Informacao>>);
 }

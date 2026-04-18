@@ -29,3 +29,15 @@ class FileFailure extends Failure {
   @override
   List<Object?> get props => [message];
 }
+
+class CacheException extends Failure {
+  final String message;
+
+  CacheException({this.message = "Falha ao remover."});
+
+  @override
+  String get msg => message;
+
+  @override
+  List<Object?> get props => [message];
+}
