@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_grid_info/core/injections/container_injection.dart';
 import 'package:flutter_grid_info/features/feature_home/presentation/_stores/home_store.dart';
+import 'package:flutter_grid_info/features/feature_home/presentation/widgets/home_box_card.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -256,36 +257,17 @@ class _HomeState extends State<Home> {
                 itemCount: store.listaInformacoes.length,
                 itemBuilder: (_, index) {
                   final item = store.listaInformacoes[index];
-
-                  return Card(
-                    elevation: 4,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 20,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              item.textoInfo,
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                          ),
-
-                          IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () {
-                              _showEditInfoDialog(item.textoInfo, item.idInfo);
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.bar_chart),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
+                  return BoxCard(
+                    textCardString: item.textoInfo,
+                    IconeCardEdit: IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        _showEditInfoDialog(item.textoInfo, item.idInfo);
+                      },
+                    ),
+                    IconeCardGrafic: IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.bar_chart),
                     ),
                   );
                 },
