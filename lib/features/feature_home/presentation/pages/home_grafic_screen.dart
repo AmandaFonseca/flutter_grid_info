@@ -16,7 +16,7 @@ class HomeGraficScreen extends StatelessWidget {
         title: const Text("Estatísticas"),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: Observer(
