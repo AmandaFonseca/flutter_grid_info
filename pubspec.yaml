@@ -44,6 +44,7 @@ dependencies:
   mobx_codegen: ^2.7.7
   get_it: ^7.7.0
   test_api: ^0.7.7
+  fl_chart: ^1.2.0
 
 dev_dependencies:
   flutter_test:

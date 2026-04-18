@@ -35,7 +35,7 @@ Future<void> showAddInfoDialog(
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xff3E3030),
+              //backgroundColor: const Color(0xff3E3030),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
             onPressed: store.carregando

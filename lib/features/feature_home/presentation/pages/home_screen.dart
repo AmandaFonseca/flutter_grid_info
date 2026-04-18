@@ -87,7 +87,9 @@ class _HomeState extends State<Home> {
                     },
                   ),
                   iconeCardGrafic: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, "/grafic");
+                    },
                     icon: Icon(Icons.bar_chart),
                   ),
                 );
