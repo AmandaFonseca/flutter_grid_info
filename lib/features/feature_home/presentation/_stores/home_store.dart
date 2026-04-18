@@ -34,7 +34,7 @@ abstract class _HomeStoreBase with Store {
     mensagemErro = null;
 
     final novaInfo = Informacao(
-      idInfo: DateTime.now().toIso8601String(),
+      idInfo: '1',
       textoInfo: textoInput,
       qtdEdicoesInfo: 0,
     );
