@@ -23,6 +23,16 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
+              children: [
+                Text(
+                  "Sistema de Gestão de Textos",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 32),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
