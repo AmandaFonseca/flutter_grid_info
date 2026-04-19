@@ -1,4 +1,4 @@
-# flutter_grid_info -- ⚠️ EM CONSTRUÇÃO!!
+# flutter_grid_info 
 Aplicativo Flutter para registro de informações e visualização de gráficos de edições.
 
 ## Pacotes usados
