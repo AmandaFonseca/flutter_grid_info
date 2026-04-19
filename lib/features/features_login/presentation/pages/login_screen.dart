@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grid_info/core/components/themes/custom_colors.dart';
 import 'package:flutter_grid_info/features/features_login/presentation/_stores/login_store.dart';
 import 'package:flutter_grid_info/features/features_login/presentation/widgets/login_screen_text_field.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -29,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: Colors.grey[700],
+                    color: CustomColors.gray700,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -52,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: Colors.grey[700],
+                    color: CustomColors.gray700,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -76,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.only(bottom: 16),
                     child: Text(
                       store.mensagemErro!,
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: CustomColors.vermilion),
                       textAlign: TextAlign.center,
                     ),
                   );

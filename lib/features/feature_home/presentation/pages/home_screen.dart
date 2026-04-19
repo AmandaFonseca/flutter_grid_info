@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grid_info/core/components/themes/custom_colors.dart';
 import 'package:flutter_grid_info/core/injections/container_injection.dart';
 import 'package:flutter_grid_info/features/feature_home/presentation/_stores/home_store.dart';
 import 'package:flutter_grid_info/features/feature_home/presentation/widgets/home_box_card.dart';
@@ -46,7 +47,8 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text("Informações"),
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xfff0f0f0),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         actions: [
           IconButton(
             onPressed: () => _logout(context),
@@ -91,7 +93,7 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       Navigator.pushNamed(context, "/grafic");
                     },
-                    icon: Icon(Icons.bar_chart),
+                    icon: Icon(Icons.bar_chart, color: CustomColors.orangeDark),
                   ),
                 );
               },

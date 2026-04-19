@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grid_info/core/components/themes/custom_colors.dart';
 import 'package:flutter_grid_info/features/feature_home/presentation/_stores/home_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -40,7 +41,7 @@ Future<void> showAddInfoDialog(
                     child: Text(
                       store.mensagemErro!,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.red),
+                      style: TextStyle(color: CustomColors.vermilion),
                     ),
                   ),
                 ),
