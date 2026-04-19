@@ -127,7 +127,7 @@ abstract class _HomeStoreBase with Store {
     String idAleatorio = DateTime.now().millisecondsSinceEpoch.toString();
     final novaInfo = Informacao(
       idInfo: idAleatorio,
-      textoInfo: texto,
+      textoInfo: texto.trim(),
       qtdEdicoesInfo: 0,
     );
 
