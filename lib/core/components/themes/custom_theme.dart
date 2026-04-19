@@ -26,27 +26,26 @@ ThemeData customTheme = ThemeData(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
     ),
   ),
-  textTheme: TextTheme(
-    // Títulos de telas AppBar
-    displayMedium: TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
-      color: Color(0xff3E3030),
-    ),
-    // Cards
-    bodyLarge: TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.normal,
-      color: Colors.black87,
-    ),
-    // Rótulos
-    bodyMedium: TextStyle(fontSize: 14, color: Colors.black54),
-    // Valores numéricos
-    labelLarge: TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
-      color: Color(0xff3E3030),
+  textTheme: GoogleFonts.montserratTextTheme(
+    TextTheme(
+      displayMedium: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Color(0xff3E3030),
+      ),
+      bodyLarge: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: Colors.black87,
+      ),
+      bodyMedium: TextStyle(fontSize: 14, color: Colors.black54),
+      labelLarge: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Color(0xff3E3030),
+      ),
     ),
   ),
+
   brightness: Brightness.light,
 );
