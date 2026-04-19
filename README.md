@@ -1,6 +1,16 @@
 # flutter_grid_info -- ⚠️ EM CONSTRUÇÃO!!
 Aplicativo Flutter para registro de informações e visualização de gráficos de edições.
 
+## Pacotes usados
+- mobx & flutter_mobx: usados para gerenciar o estado reativo nas telas.
+- mobx_codegen & build_runner: Para automatizar o processo de .g.dart
+- dartz: Para retorno padronizado de falhas ou sucessos.
+- equatable: Para comparar a comparação de objetos.
+- shared_preferences: Persistência de dados simples no dispositivo.
+- flutter_dotenv: Gerencia variáveis de ambiente (como e-mail e senha padrão).
+- fl_chart: Biblioteca de gráficos para Flutter.
+- Google Fonts: Mais pode de escolha de fontes. 
+
 ## Como Executar o Projeto
 
 1. **Clone o repositório**

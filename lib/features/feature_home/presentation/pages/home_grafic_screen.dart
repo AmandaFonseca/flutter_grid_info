@@ -14,6 +14,9 @@ class HomeGraficScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Estatísticas"),
+        automaticallyImplyLeading: false,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),

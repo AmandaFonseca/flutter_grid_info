@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grid_info/core/components/themes/custom_colors.dart';
 
 Future<bool> showConfirmRemoveDialog(BuildContext context) async {
   return await showDialog(
@@ -13,7 +14,10 @@ Future<bool> showConfirmRemoveDialog(BuildContext context) async {
             ),
             TextButton(
               onPressed: () => Navigator.pop(context, true),
-              child: const Text("Sim", style: TextStyle(color: Colors.red)),
+              child: Text(
+                "Sim",
+                style: TextStyle(color: CustomColors.vermilion),
+              ),
             ),
           ],
         ),

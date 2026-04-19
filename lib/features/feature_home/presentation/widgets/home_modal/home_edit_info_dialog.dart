@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grid_info/core/components/themes/custom_colors.dart';
 import 'package:flutter_grid_info/features/feature_home/presentation/_stores/home_store.dart';
 import 'package:flutter_grid_info/features/feature_home/presentation/widgets/home_modal/home_remove_info_dialog.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -27,15 +28,19 @@ Future<void> showEditInfoDialog(
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Editar o Texto",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        color: CustomColors.gray800,
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete_outline, color: Colors.red),
+                      icon: Icon(
+                        Icons.delete_outline,
+                        color: CustomColors.vermilion,
+                      ),
                       onPressed: store.carregando
                           ? null
                           : () async {
@@ -78,7 +83,7 @@ Future<void> showEditInfoDialog(
                           child: Text(
                             store.mensagemErro!,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(color: Colors.red),
+                            style: TextStyle(color: CustomColors.vermilion),
                           ),
                         ),
                       ),
@@ -98,9 +103,7 @@ Future<void> showEditInfoDialog(
                     const SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xff3E3030),
-                        ),
+                        style: ElevatedButton.styleFrom(),
                         onPressed: store.carregando
                             ? null
                             : () async {
@@ -123,9 +126,9 @@ Future<void> showEditInfoDialog(
                                   color: Colors.white,
                                 ),
                               )
-                            : const Text(
+                            : Text(
                                 "Salvar",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: CustomColors.white),
                               ),
                       ),
                     ),
