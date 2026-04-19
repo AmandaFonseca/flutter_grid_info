@@ -7,6 +7,7 @@ Future<void> showAddInfoDialog(
   HomeStore store,
   TextEditingController controller,
 ) {
+  store.limparErro();
   return showDialog(
     context: context,
     barrierDismissible: false,
@@ -17,7 +18,7 @@ Future<void> showAddInfoDialog(
             borderRadius: BorderRadius.circular(20),
           ),
           title: const Text(
-            'Insirir um Texto',
+            'Inserir um Texto',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           content: Column(
@@ -34,10 +35,13 @@ Future<void> showAddInfoDialog(
               ),
               if (store.mensagemErro != null)
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    store.mensagemErro!,
-                    style: const TextStyle(color: Colors.red, fontSize: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Center(
+                    child: Text(
+                      store.mensagemErro!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(color: Colors.red),
+                    ),
                   ),
                 ),
             ],
@@ -64,7 +68,7 @@ Future<void> showAddInfoDialog(
 
                       if (sucesso && dialogContext.mounted) {
                         controller.clear();
-                        Navigator.pop(dialogContext); // ⭐ contexto correto
+                        Navigator.pop(dialogContext);
                       }
                     },
               child: store.carregando

@@ -39,7 +39,10 @@ void main() {
 
       when(dataSource.salvarInformacao(any)).thenAnswer((_) async => false);
       final resultado = await repository.salvarInformacao(tInformacao);
-      expect(resultado, Left<Failure, Informacao>(FileFailure()));
+      expect(
+        resultado,
+        Left<Failure, Informacao>(FileFailure(message: 'erro')),
+      );
     },
   );
 }

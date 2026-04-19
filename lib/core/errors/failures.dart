@@ -21,7 +21,19 @@ class LoginFailure extends Failure {
 class FileFailure extends Failure {
   final String message;
 
-  FileFailure({this.message = "Falha ao salvar o login."});
+  FileFailure({required this.message});
+
+  @override
+  String get msg => message;
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class FileFailureRemove extends Failure {
+  final String message;
+
+  FileFailureRemove({this.message = "Falha ao salvar o login."});
 
   @override
   String get msg => message;

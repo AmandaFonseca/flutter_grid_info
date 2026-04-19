@@ -4,13 +4,14 @@ import 'package:flutter_grid_info/features/feature_home/domain/entities/informac
 import 'package:flutter_grid_info/features/feature_home/domain/repositories/home_repository.dart';
 
 class HomeUsecase {
+  String msg = "O texto deve ter entre 3 e 100 caracteres.";
   final HomeRepository repository;
 
   HomeUsecase({required this.repository});
 
   Future<Either<Failure, Informacao>> adiciona(Informacao info) async {
     if (!info.isTextoInfoValido) {
-      return Left(FileFailure());
+      return Left(FileFailure(message: msg));
     }
     return await repository.salvarInformacao(info);
   }
@@ -25,7 +26,7 @@ class HomeUsecase {
 
   Future<Either<Failure, Informacao>> editarItem(Informacao info) async {
     if (!info.isTextoInfoValido) {
-      return Left(FileFailure());
+      return Left(FileFailure(message: msg));
     }
     return await repository.editarItem(info);
   }

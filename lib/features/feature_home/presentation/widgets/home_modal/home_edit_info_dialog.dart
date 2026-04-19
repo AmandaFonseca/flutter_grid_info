@@ -11,7 +11,7 @@ Future<void> showEditInfoDialog(
   int qtdEdicoesInfo,
 ) async {
   final controller = TextEditingController(text: textoAtual);
-
+  store.limparErro();
   await showDialog(
     context: context,
     barrierDismissible: !store.carregando,
@@ -68,7 +68,23 @@ Future<void> showEditInfoDialog(
                 ),
 
                 const SizedBox(height: 24),
-
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (store.mensagemErro != null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Center(
+                          child: Text(
+                            store.mensagemErro!,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 24),
                 Row(
                   children: [
                     Expanded(

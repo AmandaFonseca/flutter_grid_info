@@ -64,11 +64,11 @@ class MockHomeLocalDataSource extends _i1.Mock
           as _i3.Future<void>);
 
   @override
-  _i3.Future<void> editarItem(_i4.InformacaoModel? info) =>
+  _i3.Future<bool> editarItem(_i4.InformacaoModel? info) =>
       (super.noSuchMethod(
             Invocation.method(#editarItem, [info]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
+            returnValue: _i3.Future<bool>.value(false),
+            returnValueForMissingStub: _i3.Future<bool>.value(false),
           )
-          as _i3.Future<void>);
+          as _i3.Future<bool>);
 }

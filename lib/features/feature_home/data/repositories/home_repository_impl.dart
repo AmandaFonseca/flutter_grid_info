@@ -20,10 +20,10 @@ class HomeRepositoryImpl implements HomeRepository {
       if (sucesso) {
         return Right(info);
       } else {
-        return Left(FileFailure());
+        return Left(FileFailure(message: 'Erro ao salvar a informação.'));
       }
     } catch (e) {
-      return Left(FileFailure());
+      return Left(FileFailure(message: e.toString()));
     }
   }
 
@@ -33,7 +33,7 @@ class HomeRepositoryImpl implements HomeRepository {
       final resultado = await dataSource.recuperarInformacoes();
       return Right(resultado);
     } catch (e) {
-      return Left(FileFailure());
+      return Left(FileFailure(message: 'Erro ao recuperar a informação.'));
     }
   }
 
@@ -44,7 +44,7 @@ class HomeRepositoryImpl implements HomeRepository {
 
       return Right(Informacao(idInfo: id, textoInfo: '', qtdEdicoesInfo: 0));
     } catch (e) {
-      return Left(CacheException());
+      return Left(FileFailure(message: 'Erro ao excluir a informação.'));
     }
   }
 
@@ -57,10 +57,15 @@ class HomeRepositoryImpl implements HomeRepository {
         qtdEdicoesInfo: info.qtdEdicoesInfo,
       );
 
-      await dataSource.editarItem(model);
-      return Right(info);
+      final sucesso = await dataSource.editarItem(model);
+
+      if (sucesso) {
+        return Right(info);
+      } else {
+        return Left(FileFailureRemove());
+      }
     } catch (e) {
-      return Left(CacheException());
+      return Left(FileFailure(message: e.toString()));
     }
   }
 }

@@ -29,25 +29,6 @@ abstract class _HomeStoreBase with Store {
   int get totalCaracteres =>
       listaInformacoes.fold(0, (sum, item) => sum + item.textoInfo.length);
 
-  @action
-  Future<bool> excluirItem(String id) async {
-    carregando = true;
-
-    final resultado = await _homeUsecase.excluirInformacao(id);
-
-    return resultado.fold(
-      (failure) {
-        carregando = false;
-        return false;
-      },
-      (sucesso) {
-        listaInformacoes.removeWhere((item) => item.idInfo == id);
-        carregando = false;
-        return true;
-      },
-    );
-  }
-
   @computed
   Map<String, int> get estatisticasAlfanumericas {
     int letras = 0;
@@ -60,6 +41,11 @@ abstract class _HomeStoreBase with Store {
     }
 
     return {'Letras': letras, 'Números': numeros};
+  }
+
+  @action
+  void limparErro() {
+    mensagemErro = null;
   }
 
   @action
@@ -84,6 +70,7 @@ abstract class _HomeStoreBase with Store {
     int qtdEdicoesInfo,
   ) async {
     carregando = true;
+    mensagemErro = null;
 
     final infoEditada = Informacao(
       idInfo: id,
@@ -95,6 +82,7 @@ abstract class _HomeStoreBase with Store {
 
     return result.fold(
       (failure) {
+        mensagemErro = failure.msg;
         carregando = false;
         return false;
       },
@@ -103,6 +91,28 @@ abstract class _HomeStoreBase with Store {
         if (index != -1) {
           listaInformacoes[index] = infoSucesso;
         }
+        carregando = false;
+        mensagemErro = null;
+        return true;
+      },
+    );
+  }
+
+  @action
+  Future<bool> excluirItem(String id) async {
+    carregando = true;
+    mensagemErro = null;
+
+    final resultado = await _homeUsecase.excluirInformacao(id);
+
+    return resultado.fold(
+      (failure) {
+        mensagemErro = failure.msg;
+        carregando = false;
+        return false;
+      },
+      (sucesso) {
+        listaInformacoes.removeWhere((item) => item.idInfo == id);
         carregando = false;
         return true;
       },
@@ -125,7 +135,7 @@ abstract class _HomeStoreBase with Store {
 
     return resultado.fold(
       (failure) {
-        mensagemErro = "Erro ao salvar: ${failure.toString()}";
+        mensagemErro = failure.msg;
         carregando = false;
         return false;
       },

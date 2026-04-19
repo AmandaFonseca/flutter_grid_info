@@ -53,10 +53,10 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   }
 
   @override
-  Future<void> editarItem(InformacaoModel info) async {
+  Future<bool> editarItem(InformacaoModel info) async {
     try {
       final String? jsonString = sharedPreferences.getString(key);
-      if (jsonString == null) return;
+      if (jsonString == null) return false;
 
       List<dynamic> jsonList = jsonDecode(jsonString);
       List<InformacaoModel> lista = jsonList
@@ -71,8 +71,9 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
           jsonEncode(lista.map((e) => e.toMap()).toList()),
         );
       }
+      return true;
     } catch (e) {
-      throw CacheException();
+      return false;
     }
   }
 }

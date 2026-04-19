@@ -40,7 +40,7 @@ void main() {
       final tInformacaoInvalida = HomeMocksData.tInformacaoInvalidoTxt;
 
       final resultado = await usecase.adiciona(tInformacaoInvalida);
-      expect(resultado, Left(FileFailure()));
+      expect(resultado, Left(FileFailure(message: 'erro FileFailure')));
       verifyNever(repository.salvarInformacao(any));
     },
   );

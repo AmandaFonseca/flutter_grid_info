@@ -19,7 +19,10 @@ class Informacao extends Equatable {
 
   int get qtdNumerosInfo => textoInfo.replaceAll(RegExp(r'[^0-9]'), '').length;
 
-  bool get isTextoInfoValido => textoInfo.length >= 3;
+  bool get isTextoInfoValido {
+    final texto = textoInfo.trim();
+    return texto.length >= 3 && texto.length <= 100;
+  }
 
   @override
   List<Object?> get props => [idInfo, textoInfo, qtdEdicoesInfo];

@@ -4,5 +4,5 @@ abstract class HomeLocalDataSource {
   Future<bool> salvarInformacao(InformacaoModel info);
   Future<List<InformacaoModel>> recuperarInformacoes();
   Future<void> removeItem(String id);
-  Future<void> editarItem(InformacaoModel info);
+  Future<bool> editarItem(InformacaoModel info);
 }
