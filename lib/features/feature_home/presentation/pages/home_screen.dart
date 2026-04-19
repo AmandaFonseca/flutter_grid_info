@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
                 return BoxCard(
                   textCardString: item.textoInfo,
                   iconeCardEdit: IconButton(
-                    icon: const Icon(Icons.edit),
+                    icon: Icon(Icons.edit, color: Colors.green),
                     onPressed: () {
                       showEditInfoDialog(
                         context,

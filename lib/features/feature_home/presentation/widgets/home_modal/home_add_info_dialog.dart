@@ -18,9 +18,13 @@ Future<void> showAddInfoDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          title: const Text(
+          title: Text(
             'Inserir um Texto',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: CustomColors.gray800,
+            ),
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,

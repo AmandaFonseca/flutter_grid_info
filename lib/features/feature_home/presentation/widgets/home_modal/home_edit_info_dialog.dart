@@ -28,11 +28,12 @@ Future<void> showEditInfoDialog(
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Editar o Texto",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        color: CustomColors.gray800,
                       ),
                     ),
                     IconButton(
@@ -102,9 +103,7 @@ Future<void> showEditInfoDialog(
                     const SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          // backgroundColor: const Color(0xff3E3030),
-                        ),
+                        style: ElevatedButton.styleFrom(),
                         onPressed: store.carregando
                             ? null
                             : () async {

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustomColors {
-  //Nasa Colors
   static Color blue = const Color.fromRGBO(16, 91, 216, 1);
-  static Color blueCiano = const Color(0xFF3d7078);
+  static Color blueCiano600 = const Color(0xFF00acc1);
+  static Color blueCiano800 = const Color(0xFF00838f);
   static Color blueDarker = const Color(0xFF330867);
   static Color blueDarkest = const Color(0xFF0b3d91);
   static Color blueLigth = const Color(0xFF30cfd0);
   static Color blueGray = const Color(0xFF90a4ae);
+  static Color blueGray700 = const Color(0xFF455a64);
   static Color blueMediunCiano = const Color(0xFFADCAE6);
   static Color black = const Color(0xFF212121);
-  static Color gray700 = Color.fromARGB(255, 97, 97, 97);
+  static Color gray700 = Color.fromARGB(255, 130, 129, 129);
+  static Color gray800 = const Color(0xFF424242);
+  static Color greenAccent400 = const Color(0xFF00e676);
   static Color palePink = const Color(0xfff9e0de);
   static Color vermilion = const Color(0xFFdd361c);
   static Color white = const Color(0xFFf1f1f1);
